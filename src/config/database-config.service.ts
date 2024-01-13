@@ -4,8 +4,7 @@ import { AppConfigService } from '../app-config/app-config.service';
 
 @Injectable()
 export class DatabaseConfigService implements TypeOrmOptionsFactory {
-  constructor(private appConfigService: AppConfigService) {
-  }
+  constructor(private appConfigService: AppConfigService) {}
 
   createTypeOrmOptions(): TypeOrmModuleOptions {
     return {
