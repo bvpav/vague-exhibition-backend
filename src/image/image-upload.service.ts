@@ -7,6 +7,7 @@ import { ReadStream } from 'node:fs';
 import { randomUUID } from 'node:crypto';
 import { ImageConstants } from './image.constants';
 import { BucketAlreadyOwnedByYou } from '@aws-sdk/client-s3';
+import sharp from 'sharp';
 
 @Injectable()
 export class ImageUploadService {
@@ -44,16 +45,23 @@ export class ImageUploadService {
   }
 
   async uploadImage(imageStream: ReadStream) {
+    const image = new Image();
+
+    const basePipeline = imageStream.pipe(sharp());
+    const metadata = await basePipeline.clone().metadata();
+
     const key = randomUUID();
     await this.s3.putObject({
       Bucket: ImageConstants.BUCKET_NAME,
       Key: key,
-      Body: imageStream,
+      // XXX: Using .toBuffer() to fix:
+      //      "Are you using a Stream of unknown length as the Body of a PutObject request?
+      //       Consider using Upload instead from @aws-sdk/lib-storage."
+      Body: basePipeline.toFormat('webp'),
     });
-    const image = new Image();
     image.key = key;
-    image.width = 10;
-    image.height = 10;
+    image.width = metadata.width;
+    image.height = metadata.height;
     await this.imageRepository.save(image);
     return image;
   }
