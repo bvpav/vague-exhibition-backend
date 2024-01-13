@@ -6,7 +6,7 @@ export class Image {
   id: number;
 
   @Column()
-  url: string;
+  key: string;
 
   @Column()
   width: number;

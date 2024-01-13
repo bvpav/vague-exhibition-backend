@@ -13,6 +13,7 @@ export class S3ConfigService implements S3ModuleOptionsFactory {
           accessKeyId: this.appConfigService.s3AccessKeyId,
           secretAccessKey: this.appConfigService.s3SecretAccessKey,
         },
+        region: 'us-east-1', // TODO: make this configurable
         endpoint: this.appConfigService.s3Endpoint,
         forcePathStyle: true,
         // signatureVersion: 'v4',
