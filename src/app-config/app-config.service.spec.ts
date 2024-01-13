@@ -1,16 +1,16 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { TFConfigService } from './tfconfig.service';
+import { AppConfigService } from './app-config.service';
 import { ConfigService } from '@nestjs/config';
 
-describe('TFConfigService', () => {
-  let tfConfigService: TFConfigService;
+describe('AppConfigService', () => {
+  let appConfigService: AppConfigService;
   let configServiceMock: jest.Mocked<ConfigService>;
 
   beforeEach(async () => {
     const mockFn = jest.fn();
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        TFConfigService,
+        AppConfigService,
         {
           provide: ConfigService,
           useValue: {
@@ -21,59 +21,57 @@ describe('TFConfigService', () => {
       ],
     }).compile();
 
-    tfConfigService = module.get<TFConfigService>(TFConfigService);
+    appConfigService = module.get<AppConfigService>(AppConfigService);
     configServiceMock = module.get<jest.Mocked<ConfigService>>(ConfigService);
   });
 
   it('should be defined', () => {
-    expect(tfConfigService).toBeDefined();
+    expect(appConfigService).toBeDefined();
   });
 
   describe('environment', () => {
     it('should call the ConfigService', () => {
-      tfConfigService.environment;
+      appConfigService.environment;
       expect(configServiceMock.get).toHaveBeenCalled();
     });
 
     it('should return the value from the ConfigService if defined', () => {
       const expected = 'development';
       configServiceMock.get.mockReturnValue(expected);
-      const actual = tfConfigService.environment;
+      const actual = appConfigService.environment;
       expect(actual).toEqual(expected);
     });
 
     it('should return production if the ConfigService returns undefined', () => {
       const expected = 'production';
       configServiceMock.get.mockReturnValue(undefined);
-      const actual = tfConfigService.environment;
+      const actual = appConfigService.environment;
       expect(actual).toEqual(expected);
     });
   });
 
   describe('databaseUrl', () => {
     it('should call the ConfigService', () => {
-      configServiceMock.get.mockReturnValue(
-        'postgres://localhost:5432/tfconfig',
-      );
-      tfConfigService.databaseUrl;
+      configServiceMock.get.mockReturnValue('postgres://localhost:5432/db');
+      appConfigService.databaseUrl;
       expect(configServiceMock.get).toHaveBeenCalled();
     });
 
     it('should return the value from the ConfigService if defined', () => {
-      const expected = 'postgres://localhost:5432/tfconfig';
+      const expected = 'postgres://localhost:5432/db';
       configServiceMock.get.mockReturnValue(expected);
-      const actual = tfConfigService.databaseUrl;
+      const actual = appConfigService.databaseUrl;
       expect(actual).toEqual(expected);
     });
 
     it('should throw an error if the ConfigService returns undefined', () => {
       configServiceMock.get.mockReturnValue(undefined);
-      expect(() => tfConfigService.databaseUrl).toThrow();
+      expect(() => appConfigService.databaseUrl).toThrow();
     });
 
     it('throws an error if the ConfigService returns an invalid URL', () => {
       configServiceMock.get.mockReturnValue('invalid-url');
-      expect(() => tfConfigService.databaseUrl).toThrow();
+      expect(() => appConfigService.databaseUrl).toThrow();
     });
   });
 });

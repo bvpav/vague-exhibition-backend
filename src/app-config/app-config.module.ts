@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
-import { TFConfigService } from './tfconfig.service';
+import { AppConfigService } from './app-config.service';
 import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  providers: [TFConfigService],
+  providers: [AppConfigService],
   imports: [ConfigModule],
-  exports: [TFConfigService],
+  exports: [AppConfigService],
 })
-export class TFConfigModule {
+export class AppConfigModule {
 }

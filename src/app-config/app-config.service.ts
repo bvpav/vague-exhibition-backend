@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { z } from 'zod';
 
 @Injectable()
-export class TFConfigService {
+export class AppConfigService {
   constructor(private configService: ConfigService) {
   }
 

@@ -1,19 +1,19 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { TFConfigModule } from '../tfconfig/tfconfig.module';
-import { TFConfigService } from '../tfconfig/tfconfig.service';
+import { AppConfigModule } from '../app-config/app-config.module';
+import { AppConfigService } from '../app-config/app-config.service';
 
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
-      imports: [TFConfigModule],
-      inject: [TFConfigService],
-      useFactory(tfConfigService: TFConfigService) {
+      imports: [AppConfigModule],
+      inject: [AppConfigService],
+      useFactory(appConfigService: AppConfigService) {
         return {
           type: 'postgres',
-          url: tfConfigService.databaseUrl,
-          entities: [],
-          synchronize: tfConfigService.environment === 'development',
+          url: appConfigService.databaseUrl,
+          synchronize: appConfigService.environment === 'development',
+          autoLoadEntities: true,
         };
       },
     }),
