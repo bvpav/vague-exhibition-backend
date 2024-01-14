@@ -1,22 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { InjectS3, S3 } from 'nestjs-s3';
-import { InjectRepository } from '@nestjs/typeorm';
 import { Image } from './image.entity';
-import { Repository } from 'typeorm';
-import { ReadStream } from 'node:fs';
 import { randomUUID } from 'node:crypto';
 import { ImageConstants } from './image.constants';
 import { BucketAlreadyOwnedByYou } from '@aws-sdk/client-s3';
-import sharp from 'sharp';
 import { Upload } from '@aws-sdk/lib-storage';
+import { Readable } from 'stream';
 
 @Injectable()
 export class ImageUploadService {
-  constructor(
-    @InjectS3() private readonly s3: S3,
-    @InjectRepository(Image)
-    private readonly imageRepository: Repository<Image>,
-  ) {}
+  constructor(@InjectS3() private readonly s3: S3) {}
 
   async initializeStorage() {
     try {
@@ -45,26 +38,18 @@ export class ImageUploadService {
     });
   }
 
-  async uploadImage(imageStream: ReadStream) {
-    const image = new Image();
-
-    const pipeline = imageStream.pipe(sharp()).toFormat('webp');
-    const metadata = await pipeline.metadata();
-
-    const key = randomUUID();
+  async uploadImage(imageStream: Readable, image: Image, filename?: string) {
+    const key = filename || randomUUID();
     const upload = new Upload({
       client: this.s3,
       params: {
         Bucket: ImageConstants.BUCKET_NAME,
         Key: key,
-        Body: pipeline.toFormat('webp'),
+        Body: imageStream,
       },
     });
     await upload.done();
     image.key = key;
-    image.width = metadata.width;
-    image.height = metadata.height;
-    await this.imageRepository.save(image);
     return image;
   }
 }
