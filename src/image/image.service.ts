@@ -20,10 +20,10 @@ export class ImageService {
     await this.imageUploadService.initializeStorage();
   }
 
-  async uploadImage(imageStream: Readable, filename?: string) {
+  async uploadImage(imageStream: Readable, fileName?: string) {
     const image = new Image();
     const webp = await this.imageProcessingService.toWebp(imageStream, image);
-    await this.imageUploadService.uploadImage(webp, image, filename);
+    await this.imageUploadService.uploadImage(webp, image, fileName);
 
     await this.imageRepository.save(image);
     return image;

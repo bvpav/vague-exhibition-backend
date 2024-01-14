@@ -38,8 +38,8 @@ export class ImageUploadService {
     });
   }
 
-  async uploadImage(imageStream: Readable, image: Image, filename?: string) {
-    const key = filename || randomUUID();
+  async uploadImage(imageStream: Readable, image: Image, fileName?: string) {
+    const key = fileName || randomUUID();
     const upload = new Upload({
       client: this.s3,
       params: {
