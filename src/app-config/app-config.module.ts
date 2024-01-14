@@ -7,5 +7,4 @@ import { ConfigModule } from '@nestjs/config';
   imports: [ConfigModule],
   exports: [AppConfigService],
 })
-export class AppConfigModule {
-}
+export class AppConfigModule {}

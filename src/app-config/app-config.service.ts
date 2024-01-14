@@ -4,8 +4,7 @@ import { z } from 'zod';
 
 @Injectable()
 export class AppConfigService {
-  constructor(private configService: ConfigService) {
-  }
+  constructor(private configService: ConfigService) {}
 
   get environment() {
     return this.configService.get('NODE_ENV') || 'production';

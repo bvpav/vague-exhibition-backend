@@ -24,5 +24,4 @@ import { S3ConfigService } from './config/s3-config.service';
   controllers: [],
   providers: [DatabaseConfigService, S3ConfigService],
 })
-export class AppModule {
-}
+export class AppModule {}
