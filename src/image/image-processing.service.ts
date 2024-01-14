@@ -8,8 +8,8 @@ export class ImageProcessingService {
   async toWebp(imageStream: Readable, image?: Image) {
     const pipeline = imageStream.pipe(sharp()).toFormat('webp');
 
-    const metadata = await pipeline.metadata();
     if (image) {
+      const metadata = await pipeline.metadata();
       image.width = metadata.width;
       image.height = metadata.height;
     }
