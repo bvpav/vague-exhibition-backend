@@ -5,11 +5,13 @@ import sharp from 'sharp';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Readable } from 'stream';
+import { ImageProcessingService } from './image-processing.service';
 
 @Injectable()
 export class ImageService {
   constructor(
     private readonly imageUploadService: ImageUploadService,
+    private readonly imageProcessingService: ImageProcessingService,
     @InjectRepository(Image)
     private readonly imageRepository: Repository<Image>,
   ) {}
@@ -20,13 +22,8 @@ export class ImageService {
 
   async uploadImage(imageStream: Readable, filename?: string) {
     const image = new Image();
-    const pipeline = imageStream.pipe(sharp()).toFormat('webp');
-
-    const metadata = await pipeline.metadata();
-    image.width = metadata.width;
-    image.height = metadata.height;
-
-    await this.imageUploadService.uploadImage(pipeline, image, filename);
+    const webp = await this.imageProcessingService.toWebp(imageStream, image);
+    await this.imageUploadService.uploadImage(webp, image, filename);
 
     await this.imageRepository.save(image);
     return image;
