@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { AutomapperProfile, InjectMapper } from '@automapper/nestjs';
-import { createMap, Mapper } from '@automapper/core';
+import { createMap, forMember, mapFrom, Mapper } from '@automapper/core';
 import { Image } from './image.entity';
 import { ImageDto } from './image.dto';
 
@@ -12,7 +12,15 @@ export class ImageProfile extends AutomapperProfile {
 
   override get profile() {
     return (mapper) => {
-      createMap(mapper, Image, ImageDto);
+      createMap(
+        mapper,
+        Image,
+        ImageDto,
+        forMember(
+          (d) => d.url,
+          mapFrom((s) => '...'),
+        ),
+      );
     };
   }
 }
