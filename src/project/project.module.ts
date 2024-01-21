@@ -12,6 +12,7 @@ import { CategoryService } from './category/category.service';
 import { CategoryProfile } from './category/profile/category.profile';
 import { CategoryController } from './category/category.controller';
 import { CategoryCommand } from './category/profile/category.command';
+import { ImageModule } from '../image/image.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { CategoryCommand } from './category/profile/category.command';
       Student,
       Thumbnail,
     ]),
+    ImageModule,
   ],
   providers: [CategoryService, CategoryProfile, CategoryCommand],
   controllers: [CategoryController],
