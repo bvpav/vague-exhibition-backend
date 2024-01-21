@@ -9,6 +9,7 @@ import { S3ConfigService } from './config/s3-config.service';
 import { ProjectModule } from './project/project.module';
 import { AutomapperModule } from '@automapper/nestjs';
 import { classes } from '@automapper/classes';
+import { CommandModule } from 'nestjs-command';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { classes } from '@automapper/classes';
       strategyInitializer: classes(),
     }),
     ProjectModule,
+    CommandModule,
   ],
   controllers: [],
   providers: [DatabaseConfigService, S3ConfigService],
