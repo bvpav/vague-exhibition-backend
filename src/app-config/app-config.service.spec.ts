@@ -77,6 +77,7 @@ describe('AppConfigService', () => {
 
   describe('s3AccessKeyId', () => {
     it('should call the ConfigService', () => {
+      configServiceMock.get.mockReturnValue('1234567890');
       appConfigService.s3AccessKeyId;
       expect(configServiceMock.get).toHaveBeenCalled();
     });

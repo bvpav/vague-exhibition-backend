@@ -17,7 +17,7 @@ export class AppConfigService {
 
   get s3AccessKeyId() {
     const value = this.configService.get('S3_ACCESS_KEY_ID');
-    return z.string().min(1).parse(value);
+    return z.string().trim().min(1).parse(value);
   }
 
   get s3SecretAccessKey() {
