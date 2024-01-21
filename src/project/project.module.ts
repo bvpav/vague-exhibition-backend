@@ -10,6 +10,7 @@ import { Class } from './people/class.entity';
 import { Student } from './people/student.entity';
 import { CategoryService } from './category/category.service';
 import { CategoryProfile } from './category/profile/category.profile';
+import { CategoryController } from './category/category.controller';
 
 @Module({
   imports: [
@@ -25,5 +26,6 @@ import { CategoryProfile } from './category/profile/category.profile';
     ]),
   ],
   providers: [CategoryService, CategoryProfile],
+  controllers: [CategoryController],
 })
 export class ProjectModule {}
