@@ -9,6 +9,7 @@ import { Category } from './category/category.entity';
 import { Class } from './people/class.entity';
 import { Student } from './people/student.entity';
 import { CategoryService } from './category/category.service';
+import { CategoryProfile } from './category/profile/category.profile';
 
 @Module({
   imports: [
@@ -23,6 +24,6 @@ import { CategoryService } from './category/category.service';
       Thumbnail,
     ]),
   ],
-  providers: [CategoryService],
+  providers: [CategoryService, CategoryProfile],
 })
 export class ProjectModule {}

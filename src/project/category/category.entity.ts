@@ -8,6 +8,7 @@ import {
 } from 'typeorm';
 import { Project } from '../project/project.entity';
 import { Image } from '../../image/image.entity';
+import { AutoMap } from '@automapper/classes';
 
 @Entity()
 export class Category {
@@ -15,15 +16,18 @@ export class Category {
   id: number;
 
   @Column({ unique: true })
+  @AutoMap()
   slug: string;
 
   @Column()
+  @AutoMap()
   name: string;
 
   @OneToMany(() => Project, (project) => project.category)
   projects: Project[];
 
-  @OneToOne(() => Image, { nullable: true })
+  @OneToOne(() => Image)
   @JoinColumn()
+  @AutoMap()
   thumbnail: Image;
 }
