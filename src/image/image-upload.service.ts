@@ -6,10 +6,14 @@ import { ImageConstants } from './image.constants';
 import { BucketAlreadyOwnedByYou } from '@aws-sdk/client-s3';
 import { Upload } from '@aws-sdk/lib-storage';
 import { Readable } from 'stream';
+import { AppConfigService } from '../app-config/app-config.service';
 
 @Injectable()
 export class ImageUploadService {
-  constructor(@InjectS3() private readonly s3: S3) {}
+  constructor(
+    @InjectS3() private readonly s3: S3,
+    private readonly appConfigService: AppConfigService,
+  ) {}
 
   async initializeStorage() {
     try {
@@ -51,5 +55,9 @@ export class ImageUploadService {
     await upload.done();
     image.key = key;
     return image;
+  }
+
+  getPublicUrl(key: string) {
+    return `${this.appConfigService.s3PublicUrl}/${ImageConstants.BUCKET_NAME}/${key}`;
   }
 }

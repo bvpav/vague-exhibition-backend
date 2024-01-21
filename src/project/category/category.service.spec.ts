@@ -63,6 +63,7 @@ describe('CategoryService', () => {
                 ) || null
               );
             },
+            save: jest.fn(),
           } satisfies Partial<Repository<Category>>,
         },
         {
@@ -113,6 +114,26 @@ describe('CategoryService', () => {
     it('should contain a thumbnail', async () => {
       const dto = await service.findBySlug(DUMMY_CATEGORY.slug);
       expect(dto.thumbnail).toBeDefined();
+    });
+  });
+
+  describe('createCategory', () => {
+    it('should call the repository', async () => {
+      const createCategoryDto = {
+        thumbnailId: 1,
+        name: 'Dummy Category',
+        slug: 'dummy-category',
+      };
+      await service.createCategory(createCategoryDto);
+      expect((service as any).categoryRepository.save).toHaveBeenCalledWith(
+        expect.objectContaining({
+          name: createCategoryDto.name,
+          slug: createCategoryDto.slug,
+          thumbnail: expect.objectContaining({
+            id: createCategoryDto.thumbnailId,
+          }),
+        }),
+      );
     });
   });
 });

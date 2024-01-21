@@ -5,9 +5,10 @@ import { ImageService } from './image.service';
 import { ImageUploadService } from './image-upload.service';
 import { ImageProcessingService } from './image-processing.service';
 import { ImageProfile } from './image.profile';
+import { AppConfigModule } from '../app-config/app-config.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Image])],
+  imports: [TypeOrmModule.forFeature([Image]), AppConfigModule],
   providers: [
     ImageService,
     ImageProcessingService,

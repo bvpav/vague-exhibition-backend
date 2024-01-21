@@ -104,4 +104,34 @@ describe('AppConfigService', () => {
       expect(() => appConfigService.s3AccessKeyId).toThrow();
     });
   });
+
+  describe('s3PublicUrl', () => {
+    it('should call the ConfigService', () => {
+      configServiceMock.get.mockReturnValue('https://example.com');
+      appConfigService.s3PublicUrl;
+      expect(configServiceMock.get).toHaveBeenCalled();
+    });
+
+    it('should return the value from the ConfigService if defined', () => {
+      const expected = 'https://example.com';
+      configServiceMock.get.mockReturnValue(expected);
+      const actual = appConfigService.s3PublicUrl;
+      expect(actual).toEqual(expected);
+    });
+
+    it('throws an error if the ConfigService returns undefined', () => {
+      configServiceMock.get.mockReturnValue(undefined);
+      expect(() => appConfigService.s3PublicUrl).toThrow();
+    });
+
+    it('throws an error if the ConfigService returns an empty string', () => {
+      configServiceMock.get.mockReturnValue('');
+      expect(() => appConfigService.s3PublicUrl).toThrow();
+    });
+
+    it('throws an error if the ConfigService returns a string with only whitespace', () => {
+      configServiceMock.get.mockReturnValue('  ');
+      expect(() => appConfigService.s3PublicUrl).toThrow();
+    });
+  });
 });

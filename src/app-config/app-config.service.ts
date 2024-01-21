@@ -29,4 +29,9 @@ export class AppConfigService {
     const value = this.configService.get('S3_ENDPOINT');
     return z.string().url().parse(value);
   }
+
+  get s3PublicUrl() {
+    const value = this.configService.get('S3_PUBLIC_URL');
+    return z.string().url().parse(value);
+  }
 }
