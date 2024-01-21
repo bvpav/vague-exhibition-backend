@@ -10,10 +10,10 @@ import {
 } from 'typeorm';
 import { AdditionalImage } from './additional-image.entity';
 import { Thumbnail } from './thumbnail.entity';
-import { Student } from './student.entity';
-import { Category } from './category/category.entity';
+import { Student } from '../people/student.entity';
+import { Category } from '../category/category.entity';
 import { ProjectKind } from './project-kind.entity';
-import { Mentor } from './mentor.entity';
+import { Mentor } from '../people/mentor.entity';
 
 @Entity()
 export class Project {

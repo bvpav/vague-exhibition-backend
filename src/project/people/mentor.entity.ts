@@ -1,5 +1,5 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { Project } from './project.entity';
+import { Project } from '../project/project.entity';
 
 @Entity()
 export class Mentor {

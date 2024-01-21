@@ -5,7 +5,7 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Image } from '../image/image.entity';
+import { Image } from '../../image/image.entity';
 import { Project } from './project.entity';
 
 @Entity()

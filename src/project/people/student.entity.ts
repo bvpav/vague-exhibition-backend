@@ -5,7 +5,7 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Project } from './project.entity';
+import { Project } from '../project/project.entity';
 import { Class } from './class.entity';
 
 @Entity()
