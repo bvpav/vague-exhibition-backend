@@ -28,6 +28,6 @@ export class Category {
 
   @OneToOne(() => Image, { eager: true })
   @JoinColumn()
-  @AutoMap()
+  @AutoMap(() => Image)
   thumbnail: Image;
 }

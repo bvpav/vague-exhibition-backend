@@ -1,4 +1,4 @@
-import { Module, OnModuleInit } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Image } from './image.entity';
 import { ImageService } from './image.service';
@@ -6,6 +6,7 @@ import { ImageUploadService } from './image-upload.service';
 import { ImageProcessingService } from './image-processing.service';
 import { ImageProfile } from './image.profile';
 import { AppConfigModule } from '../app-config/app-config.module';
+import { ImageAccessService } from './image-access.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Image]), AppConfigModule],
@@ -14,13 +15,10 @@ import { AppConfigModule } from '../app-config/app-config.module';
     ImageProcessingService,
     ImageUploadService,
     ImageProfile,
+    ImageAccessService,
   ],
-  exports: [ImageService],
+  exports: [ImageService, ImageAccessService],
 })
-export class ImageModule implements OnModuleInit {
-  constructor(private readonly imageUploadService: ImageUploadService) {}
-
-  async onModuleInit() {
-    await this.imageUploadService.initializeStorage();
-  }
+export class ImageModule {
+  constructor() {}
 }

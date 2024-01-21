@@ -11,8 +11,11 @@ import { Student } from './people/student.entity';
 import { CategoryService } from './category/category.service';
 import { CategoryProfile } from './category/profile/category.profile';
 import { CategoryController } from './category/category.controller';
-import { CategoryCommand } from './category/profile/category.command';
+import { CategoryCommand } from './category/category.command';
 import { ImageModule } from '../image/image.module';
+import { ProjectService } from './project/project.service';
+import { ProjectProfile } from './project/profile/project.profile';
+import { ImageProfile } from '../image/image.profile';
 
 @Module({
   imports: [
@@ -28,7 +31,14 @@ import { ImageModule } from '../image/image.module';
     ]),
     ImageModule,
   ],
-  providers: [CategoryService, CategoryProfile, CategoryCommand],
+  providers: [
+    CategoryService,
+    CategoryProfile,
+    CategoryCommand,
+    ProjectService,
+    ProjectProfile,
+    ImageProfile,
+  ],
   controllers: [CategoryController],
 })
 export class ProjectModule {}

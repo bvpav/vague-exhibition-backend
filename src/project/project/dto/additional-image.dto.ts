@@ -1,11 +1,7 @@
 import { AutoMap } from '@automapper/classes';
 import { ImageDto } from '../../../image/image.dto';
 
-export class CategoryDto {
-  @AutoMap()
-  slug: string;
-  @AutoMap()
-  name: string;
+export class AdditionalImageDto {
   @AutoMap(() => ImageDto)
-  thumbnail: ImageDto;
+  image: ImageDto;
 }

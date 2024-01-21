@@ -6,6 +6,7 @@ import {
   Unique,
 } from 'typeorm';
 import { Student } from './student.entity';
+import { AutoMap } from '@automapper/classes';
 
 @Entity()
 @Unique(['grade', 'parallel'])
@@ -15,10 +16,12 @@ export class Class {
 
   @Column()
   // TODO: add data validation
+  @AutoMap()
   grade: number;
 
   @Column()
   // TODO: add data validation
+  @AutoMap()
   parallel: string;
 
   @OneToMany(() => Student, (student) => student.class)

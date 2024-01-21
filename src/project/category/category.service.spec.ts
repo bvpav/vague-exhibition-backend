@@ -9,6 +9,9 @@ import { classes } from '@automapper/classes';
 import { CategoryProfile } from './profile/category.profile';
 import { CategoryDto } from './dto/category.dto';
 import { ImageProfile } from '../../image/image.profile';
+import { ImageModule } from '../../image/image.module';
+import { AppConfigModule } from '../../app-config/app-config.module';
+import { ImageAccessService } from '../../image/image-access.service';
 
 describe('CategoryService', () => {
   const DUMMY_CATEGORY = {
@@ -44,9 +47,15 @@ describe('CategoryService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [AutomapperModule],
+      imports: [AutomapperModule, AppConfigModule],
       providers: [
         CategoryService,
+        {
+          provide: ImageAccessService,
+          useValue: {
+            getPublicUrl: jest.fn((key) => `https://example.com/${key}`),
+          },
+        },
         {
           provide: getRepositoryToken(Category),
           useValue: {

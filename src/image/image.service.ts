@@ -15,10 +15,6 @@ export class ImageService {
     private readonly imageRepository: Repository<Image>,
   ) {}
 
-  async initializeStorage() {
-    await this.imageUploadService.initializeStorage();
-  }
-
   async uploadImage(imageStream: Readable, fileName?: string) {
     const image = new Image();
     const webp = await this.imageProcessingService.toWebp(imageStream, image);
