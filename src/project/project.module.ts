@@ -5,9 +5,10 @@ import { Thumbnail } from './thumbnail.entity';
 import { Mentor } from './mentor.entity';
 import { ProjectKind } from './project-kind.entity';
 import { Project } from './project.entity';
-import { Category } from './category.entity';
+import { Category } from './category/category.entity';
 import { Class } from './class.entity';
 import { Student } from './student.entity';
+import { CategoryService } from './category/category.service';
 
 @Module({
   imports: [
@@ -22,5 +23,6 @@ import { Student } from './student.entity';
       Thumbnail,
     ]),
   ],
+  providers: [CategoryService],
 })
 export class ProjectModule {}

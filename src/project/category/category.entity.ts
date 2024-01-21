@@ -6,8 +6,8 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Project } from './project.entity';
-import { Image } from '../image/image.entity';
+import { Project } from '../project.entity';
+import { Image } from '../../image/image.entity';
 
 @Entity()
 export class Category {
