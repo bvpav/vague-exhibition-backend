@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ImageModule } from './image/image.module';
 import { S3Module } from 'nestjs-s3';
 import { S3ConfigService } from './config/s3-config.service';
+import { ProjectModule } from './project/project.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { S3ConfigService } from './config/s3-config.service';
       imports: [AppConfigModule],
       useClass: S3ConfigService,
     }),
+    ProjectModule,
   ],
   controllers: [],
   providers: [DatabaseConfigService, S3ConfigService],
