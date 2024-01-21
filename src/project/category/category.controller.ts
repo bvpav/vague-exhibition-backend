@@ -1,4 +1,4 @@
-import { Controller, Get, NotFoundException } from '@nestjs/common';
+import { Controller, Get, NotFoundException, Param } from '@nestjs/common';
 import { CategoryService } from './category.service';
 
 @Controller({
@@ -14,7 +14,7 @@ export class CategoryController {
   }
 
   @Get(':slug')
-  async findBySlug(slug: string) {
+  async findBySlug(@Param('slug') slug: string) {
     const category = await this.categoryService.findBySlug(slug);
     if (!category) throw new NotFoundException();
     return category;
