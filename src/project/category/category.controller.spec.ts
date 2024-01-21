@@ -24,6 +24,7 @@ describe('CategoryController', () => {
     categoryServiceMock = {
       findAll: jest.fn(),
       findBySlug: jest.fn(),
+      createCategory: jest.fn(),
     };
     const module: TestingModule = await Test.createTestingModule({
       controllers: [CategoryController],

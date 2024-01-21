@@ -26,7 +26,7 @@ export class Category {
   @OneToMany(() => Project, (project) => project.category)
   projects: Project[];
 
-  @OneToOne(() => Image)
+  @OneToOne(() => Image, { eager: true })
   @JoinColumn()
   @AutoMap()
   thumbnail: Image;

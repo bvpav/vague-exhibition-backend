@@ -79,6 +79,11 @@ describe('CategoryService', () => {
       );
       expect(await service.findAll()).toEqual(categoryDtos);
     });
+
+    it('should contain a thumbnail', async () => {
+      const dtos = await service.findAll();
+      expect(dtos.every((dto) => dto.thumbnail)).toBe(true);
+    });
   });
 
   describe('findBySlug', () => {
@@ -89,6 +94,11 @@ describe('CategoryService', () => {
 
     it('should return null if not found', async () => {
       expect(await service.findBySlug('not-found')).toBeNull();
+    });
+
+    it('should contain a thumbnail', async () => {
+      const dto = await service.findBySlug(DUMMY_CATEGORY.slug);
+      expect(dto.thumbnail).toBeDefined();
     });
   });
 });

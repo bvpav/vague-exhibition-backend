@@ -14,6 +14,7 @@ import { ImageProfile } from './image.profile';
     ImageUploadService,
     ImageProfile,
   ],
+  exports: [ImageService],
 })
 export class ImageModule implements OnModuleInit {
   constructor(private readonly imageUploadService: ImageUploadService) {}
