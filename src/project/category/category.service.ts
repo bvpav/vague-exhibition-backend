@@ -28,7 +28,6 @@ export class CategoryService {
       Category,
       CategoryDto,
     );
-    console.log(category);
     return categoryDto;
   }
 

@@ -23,7 +23,21 @@ describe('CategoryService', () => {
       height: 1080,
     },
   } satisfies Category;
-  const DUMMY_CATEGORIES = [DUMMY_CATEGORY];
+  const DUMMY_CATEGORIES = [
+    {
+      id: 2,
+      slug: 'dummy-2',
+      name: 'Dummy Category 2',
+      projects: [],
+      thumbnail: {
+        id: 2,
+        key: 'dummy-2',
+        width: 1920,
+        height: 1080,
+      },
+    },
+    DUMMY_CATEGORY,
+  ];
 
   let service: CategoryService;
   let mapper: Mapper;
