@@ -16,6 +16,7 @@ import { ImageModule } from '../image/image.module';
 import { ProjectService } from './project/project.service';
 import { ProjectProfile } from './project/profile/project.profile';
 import { ImageProfile } from '../image/image.profile';
+import { ProjectController } from './project/project.controller';
 
 @Module({
   imports: [
@@ -39,6 +40,6 @@ import { ImageProfile } from '../image/image.profile';
     ProjectProfile,
     ImageProfile,
   ],
-  controllers: [CategoryController],
+  controllers: [CategoryController, ProjectController],
 })
 export class ProjectModule {}
