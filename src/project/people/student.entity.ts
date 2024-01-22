@@ -12,6 +12,7 @@ import { AutoMap } from '@automapper/classes';
 @Entity()
 export class Student {
   @PrimaryGeneratedColumn()
+  @AutoMap()
   id: number;
 
   @Column()

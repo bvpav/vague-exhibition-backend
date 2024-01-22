@@ -13,6 +13,7 @@ import { AutoMap } from '@automapper/classes';
 @Entity()
 export class Category {
   @PrimaryGeneratedColumn()
+  @AutoMap()
   id: number;
 
   @Column({ unique: true })

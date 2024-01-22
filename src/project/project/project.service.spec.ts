@@ -235,7 +235,7 @@ describe('ProjectService', () => {
         demoUrl: 'https://example.com/demo',
         repositoryUrl: 'https://example.com/repo',
         thumbnailImageId: 1,
-        additionalImageIds: [4, 5],
+        additionalImagesImageIds: [4, 5],
         creatorIds: [1, 2],
         categoryId: 1,
         kindId: 1,
@@ -248,14 +248,20 @@ describe('ProjectService', () => {
         demoUrl: createProjectDto.demoUrl,
         repositoryUrl: createProjectDto.repositoryUrl,
         thumbnail: {
-          id: createProjectDto.thumbnailImageId,
+          image: {
+            id: createProjectDto.thumbnailImageId,
+          },
         },
         additionalImages: [
           {
-            id: createProjectDto.additionalImageIds[0],
+            image: {
+              id: createProjectDto.additionalImagesImageIds[0],
+            },
           },
           {
-            id: createProjectDto.additionalImageIds[1],
+            image: {
+              id: createProjectDto.additionalImagesImageIds[1],
+            },
           },
         ],
         creators: [

@@ -5,6 +5,7 @@ import { AutoMap } from '@automapper/classes';
 @Entity()
 export class Mentor {
   @PrimaryGeneratedColumn()
+  @AutoMap()
   id: number;
 
   @Column()

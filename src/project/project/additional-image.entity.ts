@@ -12,6 +12,7 @@ import { AutoMap } from '@automapper/classes';
 @Entity()
 export class AdditionalImage {
   @PrimaryGeneratedColumn()
+  @AutoMap()
   id: number;
 
   @OneToOne(() => Image, { eager: true, cascade: true })

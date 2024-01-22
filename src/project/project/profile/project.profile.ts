@@ -19,6 +19,10 @@ import { Student } from '../../people/student.entity';
 import { StudentDto } from '../../people/dto/student.dto';
 import { AdditionalImage } from '../additional-image.entity';
 import { AdditionalImageDto } from '../dto/additional-image.dto';
+import { CreateProjectDto } from '../dto/create-project.dto';
+import { ProjectKind } from '../project-kind.entity';
+import { Thumbnail } from '../thumbnail.entity';
+import { Category } from '../../category/category.entity';
 
 @Injectable()
 export class ProjectProfile extends AutomapperProfile {
@@ -39,6 +43,76 @@ export class ProjectProfile extends AutomapperProfile {
         forMember(
           (d) => d.thumbnail,
           mapWith(ImageDto, Image, (s) => s.thumbnail.image),
+        ),
+      );
+      createMap(
+        mapper,
+        CreateProjectDto,
+        Project,
+        // FIXME: this is a hack to make reverse unflattening work
+        forMember(
+          (d) => d.kind,
+          mapFrom((s) => {
+            const kind = new ProjectKind();
+            kind.id = s.kindId;
+            return kind;
+          }),
+        ),
+        forMember(
+          (d) => d.thumbnail,
+          mapFrom((s) => {
+            const image = new Image();
+            image.id = s.thumbnailImageId;
+            const thumbnail = new Thumbnail();
+            thumbnail.image = image;
+            return thumbnail;
+          }),
+        ),
+        forMember(
+          (d) => d.creators,
+          mapFrom((s) => {
+            return s.creatorIds.map((id) => {
+              const student = new Student();
+              student.id = id;
+              return student;
+            });
+          }),
+        ),
+        forMember(
+          (d) => d.category,
+          mapFrom((s) => {
+            const category = new Category();
+            category.id = s.categoryId;
+            return category;
+          }),
+        ),
+        forMember(
+          (d) => d.kind,
+          mapFrom((s) => {
+            const kind = new ProjectKind();
+            kind.id = s.kindId;
+            return kind;
+          }),
+        ),
+        forMember(
+          (d) => d.mentor,
+          mapFrom((s) => {
+            const mentor = new Mentor();
+            mentor.id = s.mentorId;
+            return mentor;
+          }),
+        ),
+        forMember(
+          (d) => d.additionalImages,
+          mapFrom((s) => {
+            return s.additionalImagesImageIds.map((id) => {
+              const image = new Image();
+              image.id = id;
+              const additionalImage = new AdditionalImage();
+              additionalImage.image = image;
+              return additionalImage;
+            });
+          }),
         ),
       );
 
