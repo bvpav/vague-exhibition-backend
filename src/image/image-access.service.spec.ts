@@ -1,15 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ImageService } from './image.service';
+import { ImageAccessService } from './image-access.service';
 
-describe('ImageService', () => {
-  let service: ImageService;
+describe('ImageAccessServiceService', () => {
+  let service: ImageAccessService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [ImageService],
+      providers: [ImageAccessService],
     }).compile();
 
-    service = module.get<ImageService>(ImageService);
+    service = module.get<ImageAccessService>(ImageAccessService);
   });
 
   it.skip('should be defined', () => {

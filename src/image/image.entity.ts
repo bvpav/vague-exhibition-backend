@@ -1,4 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { AutoMap } from '@automapper/classes';
 
 @Entity()
 export class Image {
@@ -9,7 +10,9 @@ export class Image {
   key: string;
 
   @Column()
+  @AutoMap()
   width: number;
   @Column()
+  @AutoMap()
   height: number;
 }
