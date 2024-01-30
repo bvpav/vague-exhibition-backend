@@ -5,6 +5,7 @@ import { NotFoundException } from '@nestjs/common';
 
 describe('CategoryController', () => {
   const DUMMY_CATEGORY = {
+    id: 1,
     slug: 'dummy',
     name: 'Dummy',
     thumbnail: {

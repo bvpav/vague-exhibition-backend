@@ -37,6 +37,7 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1",
     "sharp": "^0.33.2",
+    "transliteration": "^2.3.5",
     "typeorm": "^0.3.19",
     "yargs": "^17.7.2",
     "zod": "^3.22.4"

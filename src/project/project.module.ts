@@ -17,6 +17,8 @@ import { ProjectService } from './project/project.service';
 import { ProjectProfile } from './project/profile/project.profile';
 import { ImageProfile } from '../image/image.profile';
 import { ProjectController } from './project/project.controller';
+import { PeopleService } from './people/people.service';
+import { ProjectCommand } from './project/project.command';
 
 @Module({
   imports: [
@@ -39,6 +41,8 @@ import { ProjectController } from './project/project.controller';
     ProjectService,
     ProjectProfile,
     ImageProfile,
+    PeopleService,
+    ProjectCommand,
   ],
   controllers: [CategoryController, ProjectController],
 })
