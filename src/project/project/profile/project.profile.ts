@@ -8,6 +8,7 @@ import {
   Mapper,
   mapWith,
   namingConventions,
+  preCondition,
 } from '@automapper/core';
 import { ProjectDto } from '../dto/project.dto';
 import { Project } from '../project.entity';
@@ -42,6 +43,7 @@ export class ProjectProfile extends AutomapperProfile {
         ),
         forMember(
           (d) => d.thumbnail,
+          preCondition((s) => !!s.thumbnail?.image),
           mapWith(ImageDto, Image, (s) => s.thumbnail.image),
         ),
       );

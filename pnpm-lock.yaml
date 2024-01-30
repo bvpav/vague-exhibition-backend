@@ -34,6 +34,7 @@ specifiers:
   sharp: ^0.33.2
   source-map-support: ^0.5.21
   supertest: ^6.3.3
+  transliteration: ^2.3.5
   ts-jest: ^29.1.0
   ts-loader: ^9.4.3
   ts-node: ^10.9.1
@@ -60,6 +61,7 @@ dependencies:
   reflect-metadata: 0.1.14
   rxjs: 7.8.1
   sharp: 0.33.2
+  transliteration: 2.3.5
   typeorm: 0.3.19_pg@8.11.3+ts-node@10.9.2
   yargs: 17.7.2
   zod: 3.22.4
@@ -6389,6 +6391,14 @@ packages:
 
   /tr46/0.0.3:
     resolution: {integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==}
+
+  /transliteration/2.3.5:
+    resolution: {integrity: sha512-HAGI4Lq4Q9dZ3Utu2phaWgtm3vB6PkLUFqWAScg/UW+1eZ/Tg6Exo4oC0/3VUol/w4BlefLhUUSVBr/9/ZGQOw==}
+    engines: {node: '>=6.0.0'}
+    hasBin: true
+    dependencies:
+      yargs: 17.7.2
+    dev: false
 
   /tree-kill/1.2.2:
     resolution: {integrity: sha512-L0Orpi8qGpRG//Nd+H90vFB+3iHnue1zSSGmNOOCh1GLJ7rUKVwV2HvijphGQS2UmhUZewS9VgvxYIdgr+fG1A==}
