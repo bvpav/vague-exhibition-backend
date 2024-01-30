@@ -6,6 +6,7 @@ import { NotFoundException } from '@nestjs/common';
 
 describe('ProjectController', () => {
   const DUMMY_PROJECT = {
+    id: 1,
     name: 'Dummy Project',
     description: 'Dummy Description',
     demoUrl: 'https://example.com/demo',
@@ -66,6 +67,8 @@ describe('ProjectController', () => {
       findAll: jest.fn(),
       findById: jest.fn(),
       createProject: jest.fn(),
+      createKind: jest.fn(),
+      findKindByName: jest.fn(),
     };
 
     const module: TestingModule = await Test.createTestingModule({
