@@ -1,10 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { Command } from 'nestjs-command';
-import { PassThrough } from 'node:stream';
-import * as https from 'node:https';
 import { CategoryService } from './category.service';
 import { ImageService } from '../../image/image.service';
-import { ImageDownloadService } from '../../image/image-download.service';
 
 @Injectable()
 export class CategoryCommand {
