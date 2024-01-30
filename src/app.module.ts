@@ -10,6 +10,7 @@ import { ProjectModule } from './project/project.module';
 import { AutomapperModule } from '@automapper/nestjs';
 import { classes } from '@automapper/classes';
 import { CommandModule } from 'nestjs-command';
+import { VotesModule } from './votes/votes.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { CommandModule } from 'nestjs-command';
     }),
     ProjectModule,
     CommandModule,
+    VotesModule,
   ],
   controllers: [],
   providers: [DatabaseConfigService, S3ConfigService],
