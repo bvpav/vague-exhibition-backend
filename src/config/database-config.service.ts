@@ -10,7 +10,7 @@ export class DatabaseConfigService implements TypeOrmOptionsFactory {
     return {
       type: 'postgres',
       url: this.appConfigService.databaseUrl,
-      synchronize: this.appConfigService.environment === 'development',
+      synchronize: false, // For demonstration purposes only, otherwise use: this.appConfigService.environment === 'development',
       autoLoadEntities: true,
     };
   }
