@@ -32,6 +32,8 @@
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/swagger": "^7.2.0",
     "@nestjs/typeorm": "^10.0.1",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
     "nestjs-command": "^3.1.4",
     "nestjs-s3": "^2.0.1",
     "pg": "^8.11.3",
@@ -86,8 +88,12 @@
   },
   "pnpm": {
     "supportedArchitectures": {
-      "os": ["linux"],
-      "cpu": ["x64"]
+      "os": [
+        "linux"
+      ],
+      "cpu": [
+        "x64"
+      ]
     }
   }
 }
